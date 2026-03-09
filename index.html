@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Miss You</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body{
+margin:0;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+font-family:Arial;
+color:white;
+text-align:center;
+overflow:hidden;
+background:linear-gradient(135deg,#ff7aa2,#ffb6c1);
+position:relative;
+}
+/* العناصر المتحركة */
+.item{
+position:absolute;
+font-size:26px;
+pointer-events:none;
+}
+/* حركة القلوب */
+.heart{
+animation:floatUp linear forwards;
+}
+@keyframes floatUp{
+0%{
+transform:translateY(100vh);
+opacity:1;
+}
+100%{
+transform:translateY(-10vh);
+opacity:0;
+}
+}
+/* حركة الفراشات */
+.butterfly{
+animation:flySide linear forwards;
+}
+@keyframes flySide{
+0%{
+transform:translateX(-10vw);
+opacity:1;
+}
+100%{
+transform:translateX(110vw);
+opacity:0;
+}
+}
+button{
+margin-top:30px;
+padding:12px 25px;
+border:none;
+border-radius:20px;
+background:white;
+color:#ff4d88;
+font-size:16px;
+cursor:pointer;
+}
+</style>
+</head>
+<body>
+<h1>I Miss You More Than Words Can Say</h1>
+<p>
+It's been a long time... 
+<br>Some days I just wish you were here with me...
+<br>I still think about you everyday.
+</p>
+<button onclick="location.href='photos.html'">
+Next
+</button>
+<script>
+/* خلفية ثابتة */
+for(let i=0;i<20;i++){
+let item=document.createElement("div");
+let shapes=["💗","🦋"];
+item.innerHTML=shapes[Math.floor(Math.random()*shapes.length)];
+item.style.position="absolute";
+item.style.left=Math.random()*100+"vw";
+item.style.top=Math.random()*100+"vh";
+item.style.fontSize=(15+Math.random()*20)+"px";
+item.style.opacity="0.3";
+document.body.appendChild(item);
+}
+/* عناصر متحركة */
+function createItem(){
+let item=document.createElement("div");
+item.classList.add("item");
+let shapes=["💗"];
+let shape=shapes[Math.floor(Math.random()*shapes.length)];
+item.innerHTML=shape;
+if(shape=="💗"){
+item.classList.add("heart");
+item.style.left=Math.random()*100+"vw";
+item.style.animationDuration=(5+Math.random()*4)+"s";
+}
+document.body.appendChild(item);
+setTimeout(()=>{
+item.remove();
+},9000);
+}
+setInterval(createItem,600);
+</script>
+</body>
+</html>
